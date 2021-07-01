@@ -7,15 +7,15 @@ const html = document.querySelector('html');
 const form = document.querySelector('form');
 document.body.style.padding = '10px';
 
+/*
 function update(bgColor, textColor, bgCardsColor) {
     html.style.backgroundColor = bgColor;
     html.style.color = textColor;
 }
 select.onchange = function() {
     (select.value === 'black') ? update('black','white', 'darkslategray') : update('white','black','lightgreen');
-}
-
-let myLibrary = [];
+}*/
+let myLibrary = []
 
 function Book(name, author, pages, read) {
     this.name = name;
@@ -66,7 +66,7 @@ function showBooks() {
         btnDel.textContent = "Delete";
         
         btnRead.addEventListener('click', function(){
-            myLibrary[i].read = 'on';
+            myLibrary[i].read = true;
             refreshBooks();
             showBooks();
         })
@@ -91,13 +91,9 @@ function addBook() {
     let bName = form.elements['title'].value;
     let bAuthor = form.elements['author'].value;
     let bPages = form.elements['pages'].value;
-    let bRead = form.elements['read'].value;
-   if (bRead === "on") {
-       bRead = "true";
-   } else {
-       bRead = "false";
-   }
+    let bRead = false
     let bBook = new Book(bName, bAuthor, bPages, bRead);
+
     closeForm();
     addBookToLibrary(bBook);
     showBooks();
