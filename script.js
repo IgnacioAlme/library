@@ -6,7 +6,7 @@ const select = document.querySelector('select');
 const html = document.querySelector('html');
 document.body.style.padding = '10px';
 
-function update(bgColor, textColor) {
+function update(bgColor, textColor, bgCardsColor) {
     html.style.backgroundColor = bgColor;
     html.style.color = textColor;
 }
@@ -41,6 +41,7 @@ function delAllBooks() {
     refreshBooks();
 }
 
+
 function showBooks() { 
     refreshBooks();
     for(let i = 0; i < myLibrary.length; i++) {
@@ -54,11 +55,35 @@ function showBooks() {
         card.appendChild(pages).className = "pages";
         let read = document.createElement("p");
         card.appendChild(read).className = "read";
-        
-        name.textContent = `Título: ${myLibrary[i].name}`
-        author.textContent = `Autor: ${myLibrary[i].author}`
-        pages.textContent = `Páginas: ${myLibrary[i].pages}`
+        let btnRead = document.createElement("button");
+        card.appendChild(btnRead).className = "btnRead";
+        let btnDel = document.createElement("button");
+        card.appendChild(btnDel).className = "btnDel";
+
+        name.textContent = `Título: ${myLibrary[i].name}`;
+        author.textContent = `Autor: ${myLibrary[i].author}`;
+        pages.textContent = `Páginas: ${myLibrary[i].pages}`;
         read.textContent = `Leído: ${myLibrary[i].read}`;
+        btnRead.textContent = "Leído";
+        btnDel.textContent = "Eliminar";
+        
+        btnRead.addEventListener('click', function(){
+            myLibrary[i].read = true;
+            refreshBooks();
+            showBooks();
+        })
+        btnDel.addEventListener('click', function(){
+            console.log(myLibrary[i], "deleted");
+            const index = myLibrary.indexOf(i)
+            if (index > -1) {
+                myLibrary.splice(index, 1);
+            }
+            refreshBooks();
+            showBooks();
+            console.table(myLibrary);
+            
+            return myLibrary;
+        })
 
         container.appendChild(card).className = "card";
     }
