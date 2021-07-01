@@ -31,7 +31,12 @@
         <label>
           <strong>Number of Pages</strong>
         </label>
-        <input type="number" id="number" placeholder="Number of Pages" name="pages" required>
+        <input type="number" id="number" placeholder="Number of Pages" name="pages" required><br>
+        <input type="radio" name="chooseone" value="Read"><label for="read"> Read</label><br>
+        <input type="radio" name="chooseone" value="Not read"><label for="not-read"> Not read</label><br>
+
+        <hr>
+
         <button type="button" class="btn" onclick="addBook()">Add book</button>
         <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
       </form>

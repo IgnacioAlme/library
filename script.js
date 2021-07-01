@@ -53,12 +53,12 @@ function showBooks() {
         name.textContent = `Title: ${myLibrary[i].name}`;
         author.textContent = `Author: ${myLibrary[i].author}`;
         pages.textContent = `Pages: ${myLibrary[i].pages}`;
-        read.textContent = `Read: ${myLibrary[i].read}`;
+        read.textContent = `${myLibrary[i].read}`;
         btnRead.textContent = "Read";
         btnDel.textContent = "Delete";
         
         btnRead.addEventListener('click', function(){
-            myLibrary[i].read = true;
+            myLibrary[i].read = "Read";
             refreshBooks();
             showBooks();
         })
@@ -80,7 +80,7 @@ function addBook() {
     let bName = form.elements['title'].value;
     let bAuthor = form.elements['author'].value;
     let bPages = form.elements['pages'].value;
-    let bRead = false
+    let bRead = form.elements['chooseone'].value;
     let bBook = new Book(bName, bAuthor, bPages, bRead);
 
     closeForm();
