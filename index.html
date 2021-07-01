@@ -1,28 +1,45 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="style.css" rel="stylesheet">
-    <title>Library</title>
-  </head>
-  <body>
-    <h1>Library!</h1>
+<!DOCTYPE html>
+<html>
 
-    <label for="theme">Select theme: </label>
-    <select id="theme">
-      <option value="white">Light</option>
-      <option value="black">Dark</option>
-    </select>
+<head>
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
 
-    <div id="selections">
-    <button type="button" id="button-add">Add book</button> 
-    <button type="button" id="button-del">Delete all books</button>
+<body>
+    <h1>CALCULADORA</h1>
+    <div id="container" class="container">
+        <input type="text" id="display" name="display" readonly>
+        <div id="control">
+            <button type="button" id="clear">Clear</button>
+            <button type="button" id="delete">Delete</button>
+        </div>
+        <div id="top-row">
+            <button type="button" class="number key" data-key="103" id="7">7</button>
+            <button type="button" class="number key" data-key="104" id="8">8</button>
+            <button type="button" class="number key" data-key="105" id="9">9</button>
+            <button type="button" class="operator key" data-key="111" id="÷">÷</button>
+        </div>
+        <div id="upper-row">
+            <button type="button" class="number key" data-key="100" id="4">4</button>
+            <button type="button" class="number key" data-key="101" id="5">5</button>
+            <button type="button" class="number key" data-key="102" id="6">6</button>
+            <button type="button" class="operator key" data-key="106" id="x">x</button>
+        </div>
+        <div id="lower-row">
+            <button type="button" class="number key" data-key="97" id="1">1</button>
+            <button type="button" class="number key" data-key="98" id="2">2</button>
+            <button type="button" class="number key" data-key="99" id="3">3</button>
+            <button type="button" class="operator key" data-key="109" id="-">-</button>
+        </div>
+        <div id="bottom-row">
+            <button type="button" class="number key" data-key="110" id=".">.</button>
+            <button type="button" class="number key" data-key="96" id="0">0</button>
+            <button type="button" class="equal key" data-key="13" id="equal">=</button>
+            <button type="button" class="operator key" data-key="107" id="+">+</button>
+        </div>
     </div>
+</body>
+<script src="script.js"></script>
 
-    <div id="container">
-    </div>
-
-    <script src="script.js"></script>
-  </body>
 </html>
