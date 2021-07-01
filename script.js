@@ -7,14 +7,6 @@ const html = document.querySelector('html');
 const form = document.querySelector('form');
 document.body.style.padding = '10px';
 
-/*
-function update(bgColor, textColor, bgCardsColor) {
-    html.style.backgroundColor = bgColor;
-    html.style.color = textColor;
-}
-select.onchange = function() {
-    (select.value === 'black') ? update('black','white', 'darkslategray') : update('white','black','lightgreen');
-}*/
 let myLibrary = []
 
 function Book(name, author, pages, read) {

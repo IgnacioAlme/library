@@ -1,8 +1,15 @@
-h1 {
-    text-align: center;
+html {
+    background-color: black;
+    color: white;
 }
 * {
     box-sizing: border-box;
+}
+h1 {
+    font-size: 3rem;
+    text-align: center;
+    background-color: gray;
+    border: 1px solid darkgray;
 }
 .openBtn {
     display: flex;
@@ -21,6 +28,7 @@ h1 {
     position: relative;
     text-align: center;
     width: 100%;
+    color: black;
 }
 .formPopup {
     display: none;
