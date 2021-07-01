@@ -2,6 +2,18 @@ const btnAdd = document.getElementById('button-add');
 const btnDel = document.getElementById('button-del');
 const container = document.getElementById('container');
 const cards = container.children;
+const select = document.querySelector('select');
+const html = document.querySelector('html');
+document.body.style.padding = '10px';
+
+function update(bgColor, textColor) {
+    html.style.backgroundColor = bgColor;
+    html.style.color = textColor;
+}
+
+select.onchange = function() {
+    (select.value === 'black') ? update('black','white', 'darkslategray') : update('white','black','lightgreen');
+}
 
 let myLibrary = [];
 
@@ -17,15 +29,20 @@ function addBookToLibrary(book) {
     myLibrary.push(book);
 }
 
-function delAllBooks() {
+function refreshBooks() {
     while (container.firstChild) {
         container.removeChild(container.firstChild);
         container.textContent = '';
     }
 }
 
+function delAllBooks() {
+    myLibrary = [];
+    refreshBooks();
+}
+
 function showBooks() { 
-    delAllBooks();
+    refreshBooks();
     for(let i = 0; i < myLibrary.length; i++) {
         let card = document.createElement("div");
 
@@ -37,13 +54,13 @@ function showBooks() {
         card.appendChild(pages).className = "pages";
         let read = document.createElement("p");
         card.appendChild(read).className = "read";
-
-        container.appendChild(card).className = "card";
-
+        
         name.textContent = `Título: ${myLibrary[i].name}`
         author.textContent = `Autor: ${myLibrary[i].author}`
         pages.textContent = `Páginas: ${myLibrary[i].pages}`
         read.textContent = `Leído: ${myLibrary[i].read}`;
+
+        container.appendChild(card).className = "card";
     }
 }
 
@@ -59,3 +76,4 @@ function addBook() {
 }
 
 btnAdd.addEventListener('click', addBook);
+btnDel.addEventListener('click', delAllBooks);
