@@ -20,6 +20,28 @@
     <button type="button" id="button-del">Delete all books</button>
     </div>
 
+    <div class="form-popup" id="myForm">
+      <form action="#" class="form-container">
+        <h1>Add book</h1>
+    
+        <label for="title"><b>Title</b></label>
+        <input type="text" placeholder="Enter title" name="title" required>
+    
+        <label for="author"><b>Author</b></label>
+        <input type="text" placeholder="Enter author" name="author" required>
+
+        <label for="pages"><b>Pages</b></label>
+        <input type="number" placeholder="Enter pages" name="pages" required>
+
+        <label for="read"><b>Read</b></label>
+        <input type="checkbox" name="read">
+    
+        <button type="submit" class="btn">Submit</button>
+        <button type="submit" class="btn cancel" onclick="closeForm()">Close</button>
+      </form>
+    </div> 
+    <button type="button" class="open-button">Add book</button>
+
     <div id="container">
     </div>
 

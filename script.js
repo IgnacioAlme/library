@@ -60,12 +60,12 @@ function showBooks() {
         let btnDel = document.createElement("button");
         card.appendChild(btnDel).className = "btnDel";
 
-        name.textContent = `Título: ${myLibrary[i].name}`;
-        author.textContent = `Autor: ${myLibrary[i].author}`;
-        pages.textContent = `Páginas: ${myLibrary[i].pages}`;
-        read.textContent = `Leído: ${myLibrary[i].read}`;
-        btnRead.textContent = "Leído";
-        btnDel.textContent = "Eliminar";
+        name.textContent = `Title: ${myLibrary[i].name}`;
+        author.textContent = `Author: ${myLibrary[i].author}`;
+        pages.textContent = `Pages: ${myLibrary[i].pages}`;
+        read.textContent = `Read: ${myLibrary[i].read}`;
+        btnRead.textContent = "Read";
+        btnDel.textContent = "Delete";
         
         btnRead.addEventListener('click', function(){
             myLibrary[i].read = true;
@@ -90,15 +90,26 @@ function showBooks() {
 }
 
 function addBook() {
-    let bName = prompt('Ingrese el título', 'Sin título');
-    let bAuthor = prompt('Ingrese el autor', 'Sin autor');
-    let bPages = prompt('Ingrese la cantidad de páginas', 0);
-    let bRead = confirm('¿Lo ha leído?');
+    let bName = prompt('Input title', 'No title');
+    let bAuthor = prompt('Input author', 'No author');
+    let bPages = prompt('Input pages', 0);
+    let bRead = confirm('Read?');
 
     let bBook = new Book(bName, bAuthor, bPages, bRead);
     addBookToLibrary(bBook);
     showBooks();
 }
+
+function openForm() {
+    document.getElementById("myForm").style.display = "block";
+}
+  
+function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+} 
+
+const btnOpen = document.querySelector(".open-button");
+btnOpen.addEventListener('click', openForm);
 
 btnAdd.addEventListener('click', addBook);
 btnDel.addEventListener('click', delAllBooks);
