@@ -1,130 +1,115 @@
-const btnNumbers = document.querySelectorAll('.number');
-const display = document.getElementById('display');
-const btnClear = document.getElementById('clear');
-const btnDel = document.getElementById('delete');
-const btnOperators = document.querySelectorAll('.operator');
-const btnEqual = document.querySelector('.equal');
-const keys = Array.from(document.querySelectorAll('.key'));
+const btnAdd = document.getElementById('button-add');
+const btnDel = document.getElementById('button-del');
+const container = document.getElementById('container');
+const cards = container.children;
+const select = document.querySelector('select');
+const html = document.querySelector('html');
+const form = document.querySelector('form');
+document.body.style.padding = '10px';
 
-let queue = "";
-let saved = "";
-let op;
+function update(bgColor, textColor, bgCardsColor) {
+    html.style.backgroundColor = bgColor;
+    html.style.color = textColor;
+}
+select.onchange = function() {
+    (select.value === 'black') ? update('black','white', 'darkslategray') : update('white','black','lightgreen');
+}
 
+let myLibrary = [];
 
-function getKeyNumber(e) {
-    const key = document.querySelector(`button[data-key="${e.keyCode}"]`);
-    console.log('key: ', key.id);
-    if (!isNaN(key.id)) {
-        queue += key.id;
-        display.value += key.id;
-    } else if (key.id === "equal") {
-        showOnDisplay();
-    } else {
-        op = key.id;
-        if (saved !== "") {
-            showOnDisplay();
-        }
-        saved = queue;
-        queue = "";
-        display.value = "";
+function Book(name, author, pages, read) {
+    this.name = name;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+}
+
+function addBookToLibrary(book) {
+    myLibrary.push(book);
+}
+
+function refreshBooks() {
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+        container.textContent = '';
     }
-
 }
 
-function getNumber() {
-    if (queue === 'ERROR') {
-        display.value = "";
-        queue = "";
-    }
-    queue += this.id;
-    console.log(queue);
-    display.value += this.id;
-}
-function clearDisplay() {
-    display.value = "";
-    saved = "";
-    queue = "";
-    op = "";
-    console.log('saved: ', saved);
-    console.log('queue: ', queue);
-}
-function separateQueue() {
-    op = this.id;
-    if (saved !== "") {
-        showOnDisplay();
-        console.log('saved: ', saved);
-        console.log('queue: ', queue);
-    }
-    display.value = "";
-    saved = queue;
-    queue = "";
-}
-function showOnDisplay() {
-    let result = operator(op, saved, queue);
-    queue = result;
-    saved = "";
-    display.value = result;
-}
-function delNumber() {
-    queue = queue.slice(0, -1);
-    console.log('queue: ', queue);
-    display.value = queue;
+function delAllBooks() {
+    myLibrary = [];
+    refreshBooks();
 }
 
-function add(a, b) {
-    return a + b;
-}
-function subtract(a, b) {
-    return a - b;
-}
-function multiply(a, b) {
-    return a * b;
-}
-function divide(a, b) {
-    return rounded(a / b);
-}
-function operator(operator, num1, num2) {
-    num1 = Number(num1);
-    num2 = Number(num2);
-    switch (operator) {
-        case "+":
-            return add(num1, num2);
-        case "-":
-            return subtract(num1, num2);
-        case "x":
-            return multiply(num1, num2);
-        case "÷":
-            if (num2 === 0) {
-                return 'ERROR';
+function showBooks() { 
+    refreshBooks();
+    for(let i = 0; i < myLibrary.length; i++) {
+        let card = document.createElement("div");
+
+        let name = document.createElement("p");
+        card.appendChild(name).className = "name";
+        let author = document.createElement("p");
+        card.appendChild(author).className = "author";
+        let pages = document.createElement("p");
+        card.appendChild(pages).className = "pages";
+        let read = document.createElement("p");
+        card.appendChild(read).className = "read";
+        let btnRead = document.createElement("button");
+        card.appendChild(btnRead).className = "btnRead";
+        let btnDel = document.createElement("button");
+        card.appendChild(btnDel).className = "btnDel";
+
+        name.textContent = `Title: ${myLibrary[i].name}`;
+        author.textContent = `Author: ${myLibrary[i].author}`;
+        pages.textContent = `Pages: ${myLibrary[i].pages}`;
+        read.textContent = `Read: ${myLibrary[i].read}`;
+        btnRead.textContent = "Read";
+        btnDel.textContent = "Delete";
+        
+        btnRead.addEventListener('click', function(){
+            myLibrary[i].read = 'on';
+            refreshBooks();
+            showBooks();
+        })
+        btnDel.addEventListener('click', function(){
+            console.log(myLibrary[i], "deleted");
+            const index = myLibrary.indexOf(i)
+            if (index > -1) {
+                myLibrary.splice(index, 1);
             }
-            else return divide(num1, num2);
-        default:
-            return null;
-    }
-}
-
-function rounded(number) {
-    return Math.round(number * 1000) / 1000;
-}
-
-btnNumbers.forEach(btnNumber => btnNumber.addEventListener('click', getNumber));
-btnOperators.forEach(btnOperator => btnOperator.addEventListener('click', separateQueue));
-btnEqual.addEventListener('click', showOnDisplay);
-btnClear.addEventListener('click', clearDisplay);
-btnDel.addEventListener('click', delNumber);
-
-//Keyboard input
-window.addEventListener('keydown', getKeyNumber);
-
-/*
-document.addEventListener('keydown', function(event) {
-    switch (event.code) {
-        case 'Numpad1':
+            refreshBooks();
+            showBooks();
+            console.table(myLibrary);
             
-            break;
-    
-        default:
-            break;
+            return myLibrary;
+        })
+
+        container.appendChild(card).className = "card";
     }
-});
-*/
+}
+
+function addBook() {
+    let bName = form.elements['title'].value;
+    let bAuthor = form.elements['author'].value;
+    let bPages = form.elements['pages'].value;
+    let bRead = form.elements['read'].value;
+   if (bRead === "on") {
+       bRead = "true";
+   } else {
+       bRead = "false";
+   }
+    let bBook = new Book(bName, bAuthor, bPages, bRead);
+    closeForm();
+    addBookToLibrary(bBook);
+    showBooks();
+}
+function openForm() {
+    document.getElementById("popupForm").style.display = "block";
+}
+function closeForm() {
+    document.getElementById("popupForm").style.display = "none";
+    form.elements['title'].value = "";
+    form.elements['author'].value = "";
+    form.elements['pages'].value = null;
+}
+
+btnDel.addEventListener('click', delAllBooks);

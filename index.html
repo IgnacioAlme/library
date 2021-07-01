@@ -1,45 +1,56 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 
 <head>
-    <title>Calculadora</title>
-    <link rel="stylesheet" href="style.css"/>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="style.css" rel="stylesheet">
+  <title>Library</title>
 </head>
 
 <body>
-    <h1>CALCULADORA</h1>
-    <div id="container" class="container">
-        <input type="text" id="display" name="display" readonly>
-        <div id="control">
-            <button type="button" id="clear">Clear</button>
-            <button type="button" id="delete">Delete</button>
-        </div>
-        <div id="top-row">
-            <button type="button" class="number key" data-key="103" id="7">7</button>
-            <button type="button" class="number key" data-key="104" id="8">8</button>
-            <button type="button" class="number key" data-key="105" id="9">9</button>
-            <button type="button" class="operator key" data-key="111" id="÷">÷</button>
-        </div>
-        <div id="upper-row">
-            <button type="button" class="number key" data-key="100" id="4">4</button>
-            <button type="button" class="number key" data-key="101" id="5">5</button>
-            <button type="button" class="number key" data-key="102" id="6">6</button>
-            <button type="button" class="operator key" data-key="106" id="x">x</button>
-        </div>
-        <div id="lower-row">
-            <button type="button" class="number key" data-key="97" id="1">1</button>
-            <button type="button" class="number key" data-key="98" id="2">2</button>
-            <button type="button" class="number key" data-key="99" id="3">3</button>
-            <button type="button" class="operator key" data-key="109" id="-">-</button>
-        </div>
-        <div id="bottom-row">
-            <button type="button" class="number key" data-key="110" id=".">.</button>
-            <button type="button" class="number key" data-key="96" id="0">0</button>
-            <button type="button" class="equal key" data-key="13" id="equal">=</button>
-            <button type="button" class="operator key" data-key="107" id="+">+</button>
-        </div>
+  <h1>Library!</h1>
+
+  <label for="theme">Select theme: </label>
+  <select id="theme">
+    <option value="white">Light</option>
+    <option value="black">Dark</option>
+  </select>
+
+  <h2>Read books</h2>
+  <p>Click on the "Add books" button to open the popup.</p>
+  <div class="openBtn">
+    <button class="openButton" onclick="openForm()"><strong>Open Form</strong></button>
+  </div>
+  <div class="loginPopup">
+    <div class="formPopup" id="popupForm">
+      <form action="#" class="formContainer">
+        <h2>Please add book's information</h2>
+        <label for="title">
+          <strong>Title</strong>
+        </label>
+        <input type="text" id="title" placeholder="Book's Title" name="title" required>
+        <label for="author">
+          <strong>Author</strong>
+        </label>
+        <input type="text" id="author" placeholder="Author's name" name="author" required>
+        <label>
+          <strong>Number of Pages</strong>
+        </label>
+        <input type="number" id="number" placeholder="Number of Pages" name="pages" required>
+        <label>
+          <strong>Read</strong>
+        </label>
+        <input type="checkbox" id="read" name="read">
+        <button type="button" class="btn" onclick="addBook()">Add book</button>
+        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+      </form>
     </div>
+  </div>
+
+  <div id="container"></div>
+
+  <script src="script.js"></script>
 </body>
-<script src="script.js"></script>
 
 </html>
