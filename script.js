@@ -72,10 +72,7 @@ function showBooks() {
         })
         btnDel.addEventListener('click', function(){
             console.log(myLibrary[i], "deleted");
-            const index = myLibrary.indexOf(i)
-            if (index > -1) {
-                myLibrary.splice(index, 1);
-            }
+            myLibrary.splice(i, 1);
             refreshBooks();
             showBooks();
             console.table(myLibrary);
