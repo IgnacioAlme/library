@@ -2,6 +2,7 @@ html {
     font-family: Arial, Helvetica, sans-serif;
     background-color: black;
     color: white;
+    background-image: url("https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=853&q=80");
 }
 * {
     box-sizing: border-box;
@@ -10,8 +11,40 @@ h1 {
     font-size: 3rem;
     text-align: center;
     background-color: gray;
-    border: 1px solid darkgray;
+    border: 5px solid darkgray;
+    width: fit-content;
 }
+.glossy-frame:before{
+    content:'';
+    position:absolute;
+    width:130%;
+    height:45%;
+    top:-15%;
+    right:-5%;
+    background:rgba(255,255,255,0.3);
+    background:
+        linear-gradient(
+        top,
+        rgba(255,255,255,0.1),
+        rgba(255,255,255,0.3)
+        );
+    ;
+    transform:rotate(10deg);
+    border-bottom-left-radius:200px 20px;
+    border-bottom-right-radius: 200px 10px;
+    border-top-right-radius:5px 100px;
+}
+.glossy-frame{
+position: relative;
+overflow: hidden;
+border: 10px solid #fff;
+box-shadow: 0 1px 4px #acacac, 0 0 0 1px #dadada;
+width: 576px;
+height: auto;
+margin: 10% auto;
+top: 20%;
+}
+
 .openBtn {
     display: flex;
     justify-content: left;
@@ -23,7 +56,6 @@ h1 {
     color: white;
     padding: 14px 20px;
     cursor: pointer;
-    position: fixed;
 }
 .loginPopup {
     position: relative;
@@ -46,7 +78,7 @@ h1 {
     background-color: #fff;
 }
 .formContainer input[type=text],
-.formContainer input[type=password] {
+.formContainer input[type=text] {
     width: 100%;
     padding: 15px;
     margin: 5px 0 20px 0;
@@ -54,7 +86,7 @@ h1 {
     background: #eee;
 }
 .formContainer input[type=text]:focus,
-.formContainer input[type=password]:focus {
+.formContainer input[type=text]:focus {
     background-color: #ddd;
     outline: none;
 }
@@ -78,10 +110,10 @@ h1 {
 
 .card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    background-color: darkslategray;
+    background-color: #2A4747;
     transition: 0.3s;
 
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
     margin-left: 1rem;
 
     border-radius: 5px;
@@ -90,6 +122,7 @@ h1 {
 }
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    background-color: #2F4F4F;
 }
 #container {
     margin-top: 60px;
@@ -99,6 +132,30 @@ h1 {
 .card p {
     padding-top: 0.5rem;
     padding-left: 1rem;
+}
+
+.btnRead {
+	background-color: green;
+	color: white;
+	border: 1px;
+	border-radius: 3px
+}
+.btnDel {
+	background-color: red;
+	color: white;
+	border: 1px;
+	border-radius: 3px; 
+	margin-left: .5rem;
+}
+.footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: red;
+	color: white;
+	text-align: center;
+}
 }
 
 @media only screen and (max-width: 830px) {
